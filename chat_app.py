@@ -13,6 +13,7 @@ from langchain.chains.conversation.memory import ConversationBufferWindowMemory
 from langchain.vectorstores import Chroma
 from langchain.agents import Tool, AgentType, initialize_agent
 from langchain.document_loaders import OnlinePDFLoader
+from langchain_community.document_loaders import PyPDFLoader
 from langchain.llms import HuggingFacePipeline
 from langchain.embeddings import HuggingFaceEmbeddings 
 
@@ -197,7 +198,8 @@ class PDFChat(Chat):
     def update_pdf_docstore(self, pdf_docs):
         all_pdfs = []
         for pdf_doc in pdf_docs:
-            loader = OnlinePDFLoader(pdf_doc.name)
+            # loader = OnlinePDFLoader(pdf_doc.name)
+            loader = PyPDFLoader(pdf_doc.name)
             documents = loader.load()
             text_splitter = llms.init_text_splitter()
             texts = text_splitter.split_documents(documents)
