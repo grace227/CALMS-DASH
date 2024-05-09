@@ -95,6 +95,7 @@ target/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+*.ipynb
 
 # IPython
 profile_default/
@@ -181,3 +182,9 @@ sandbox.ipynb
 
 # Spec simulator
 dlog
+
+# Ignore some files
+electron_mic_tools.py
+bboxed_Chen et al 2014.pdf
+assets/
+

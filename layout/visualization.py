@@ -6,36 +6,58 @@ import dash_bootstrap_components as dbc
 
 def get_plot_layout():
     plot_layout = [
-        dbc.CardHeader("Data Viewer"),
-        dbc.CardBody(
+        dbc.AccordionItem(
             [
-                dbc.Col(
-                            html.Div(
-                                [
-                                    dcc.Graph(
-                                        id="bl-cam",
-                                        figure=px.imshow(img=np.zeros((1024, 1024))),
-                                    )
-                                ]
-                            ),
-                        ),
-            ]
-        ),
+                dbc.Card(
+                    id={"base": "plot_card", "type": "datavis"},
+                    children=[
+                        dbc.CardBody(
+                            [
+                                dbc.Col(
+                                    html.Div(
+                                        [
+                                            dcc.Graph(
+                                                id="graph",
+                                                figure=px.imshow(img=np.zeros((1024, 1024))),
+                                            )
+                                        ]
+                                    ),
+                                ),
+                            ]
+                        )
+                    ]
+                )
+            ],
+            title="Data Viewer",
+        )
     ]
     return plot_layout
 
+
 def get_pdf_layout():
     pdf_layout = [
-        dbc.CardHeader("PDF Viewer"),
-        dbc.CardBody(
+        dbc.AccordionItem(
             [
-                dbc.Col(
-                        html.Div(
-                            [html.Iframe(src="../assets/Chen et al 2014.pdf", 
-                                         style={"width": "100%", "height": "500px"})]
-                                         )
-                        ),
-            ]
-        ),
+                dbc.Card(
+                    id={"base": "pdf_card", "type": "datavis"},
+                    children=[
+                        dbc.CardBody(
+                            [
+                                dbc.Col(
+                                    html.Div(
+                                            [
+                                                html.Iframe(id ='iframe-src-input',
+                                                            src="../assets/Chen et al 2014.pdf", 
+                                                            style={"width": "100%", "height": "500px"})
+                                            ]
+                                            )
+                                    ),
+                            ]
+                        )
+                    ]
+                )
+            ],
+            title="PDF Viewer",
+        )
     ]
     return pdf_layout
